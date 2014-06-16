@@ -1,13 +1,10 @@
 package data.structures.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -44,7 +41,10 @@ public class StackTest {
 				itr.remove();
 			}
 		}
-		assertEquals(stack.size(), 1);
-
+		stack.push(TEST_STRING_NAME_HOMER);
+		assertEquals(TEST_STRING_NAME_HOMER, stack.pop());
+		assertEquals(1, stack.size());
+		assertEquals(TEST_STRING_NAME_ALEX, stack.pop());
+		assertEquals(true, stack.isEmpty());
 	}
 }

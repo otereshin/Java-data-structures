@@ -44,37 +44,38 @@ public class Stack<Item> implements Iterable<Item> {
 		return size == 0;
 	}
 
-	@SuppressWarnings("hiding")
-	private class MyStackIterator<Item> implements Iterator<Item> {
-		int iterSize = size;
+	@SuppressWarnings({ "unchecked", "hiding" })
+	private class StackIterator<Item> implements Iterator<Item> {
+		private Node<Item> nextNode = (Node<Item>) last;
+		private Node<Item> currentNode = null;
 
 		@Override
 		public boolean hasNext() {
-			return iterSize > 0;
+			return nextNode != null;
 		}
 
-		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public Item next() {
-			if (iterSize > 1) {
-				Node next = last;
-				last = last.previous;
-				iterSize--;
-				return (Item) next.value;
-			}
-			iterSize--;
-			return (Item) last.value;
+			currentNode = nextNode;
+			nextNode = nextNode.previous;
+			return currentNode.value;
 		}
 
 		@Override
 		public void remove() {
-			pop();
+			if (hasNext()) {
+				currentNode.value = currentNode.previous.value;
+				currentNode.previous = currentNode.previous.previous;
+			} else {
+				currentNode = null;
+			}
+			size--;
 		}
 
 	}
 
 	@Override
 	public Iterator<Item> iterator() {
-		return new MyStackIterator<Item>();
+		return new StackIterator<Item>();
 	}
 }

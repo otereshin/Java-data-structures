@@ -1,6 +1,7 @@
 package data.structures.Queue;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Queue<Item> implements Iterable<Item> {
 	private int size;
@@ -28,6 +29,9 @@ public class Queue<Item> implements Iterable<Item> {
 	}
 
 	public Item deQueue() {
+		if (size == 0) {
+			throw new NoSuchElementException();
+		}
 		if (first == null) {
 			first = last;
 		}

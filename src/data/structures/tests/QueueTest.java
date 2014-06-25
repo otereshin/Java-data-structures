@@ -1,14 +1,18 @@
 package data.structures.tests;
 
 import static org.junit.Assert.assertEquals;
+
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
 import data.structures.Queue.Queue;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@FixMethodOrder(MethodSorters.DEFAULT)
 public class QueueTest {
 
 	private Queue<String> queue;
@@ -43,5 +47,11 @@ public class QueueTest {
 		assertEquals(TEST_STRING_NAME_DENIS, queue.deQueue());
 		assertEquals(TEST_STRING_NAME_ALEX, queue.deQueue());
 		assertEquals(true, queue.isEmpty());
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void queueIsEmptyTest() {
+		Queue<String> emptyQueue = new Queue<String>();
+		emptyQueue.deQueue();
 	}
 }

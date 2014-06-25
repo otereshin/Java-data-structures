@@ -3,6 +3,7 @@ package data.structures.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -11,7 +12,7 @@ import org.junit.runners.MethodSorters;
 
 import data.structures.stack.Stack;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@FixMethodOrder(MethodSorters.DEFAULT)
 public class StackTest {
 
 	private Stack<String> stack;
@@ -46,5 +47,11 @@ public class StackTest {
 		assertEquals(1, stack.size());
 		assertEquals(TEST_STRING_NAME_ALEX, stack.pop());
 		assertEquals(true, stack.isEmpty());
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void stackIsEmptyTest() {
+		Stack<String> emptyStack = new Stack<String>();
+		emptyStack.pop();
 	}
 }

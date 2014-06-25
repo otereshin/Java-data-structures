@@ -1,6 +1,7 @@
 package data.structures.stack;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Stack<Item> implements Iterable<Item> {
 
@@ -25,6 +26,9 @@ public class Stack<Item> implements Iterable<Item> {
 	}
 
 	public Item pop() {
+		if (size == 0) {
+			throw new NoSuchElementException();
+		}
 		Item retValue = (Item) last.value;
 		if (size() == 1) {
 			last = null;

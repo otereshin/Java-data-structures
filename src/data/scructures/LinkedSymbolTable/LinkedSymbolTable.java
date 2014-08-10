@@ -1,4 +1,4 @@
-package data.scructure.LinkedSymbolTable;
+package data.scructures.LinkedSymbolTable;
 
 import data.structures.Queue.Queue;
 import java.util.NoSuchElementException;
